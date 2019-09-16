@@ -1,0 +1,11 @@
+---
+title: "p8105_hw1_kmw2189"
+author: "Kylie Wheelock Riley"
+date: "9/15/2019"
+output: github_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
