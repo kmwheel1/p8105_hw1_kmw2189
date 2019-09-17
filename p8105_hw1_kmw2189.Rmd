@@ -10,9 +10,24 @@ date: "9/15/2019"
 
 output: github_document
 ---
+```{r Setting Library}
+library(tidyverse)
+```
 
 
 # Problem 1
+```{r problem_1_dataframe}
+###Setting the seed, so problem 1 random normal distribution stays the same
+set.seed(1)
+
+prob1_df = tibble(
+  random_normal = rnorm(8),
+  logical_var = random_normal > 0,
+  charac_var = c("R", "is", "the", "best", "coding", "language", "ever", "!"),  
+  factor_var = factor(c("negative", "low", "negative", "high", "low", "negative", "low", "low"))
+)
+```
+
 
 
 # Problem 2
