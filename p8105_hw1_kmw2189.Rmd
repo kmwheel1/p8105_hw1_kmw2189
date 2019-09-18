@@ -1,19 +1,21 @@
 ---
-title: "p8105_hw1_kmw2189"
-
+title: "P8105 Homework Assignment 1"
 
 author: "Kylie Wheelock Riley"
 
-
 date: "9/15/2019"
-
 
 output: github_document
 ---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+Setting Tidyverse Library
 ```{r Setting Library}
 library(tidyverse)
 ```
-
 
 # Problem 1
 ```{r problem_1_dataframe}
@@ -29,5 +31,9 @@ prob1_df = tibble(
 ```
 
 
+```{r testing_means}
+mean(random_normal)
+mean(logical_var)
+```
 
 # Problem 2
