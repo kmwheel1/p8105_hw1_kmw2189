@@ -10,30 +10,50 @@ output: github_document
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
-```
-
-Setting Tidyverse Library
-```{r Setting Library}
 library(tidyverse)
 ```
 
+
 # Problem 1
-```{r problem_1_dataframe}
+
+## Creating the dataframe
+```{r prob_1_dataframe}
 ###Setting the seed, so problem 1 random normal distribution stays the same
 set.seed(1)
 
 prob1_df = tibble(
-  random_normal = rnorm(8),
-  logical_var = random_normal > 0,
+  normal_var = rnorm(8),
+  logical_var = normal_var > 0,
   charac_var = c("R", "is", "the", "best", "coding", "language", "ever", "!"),  
   factor_var = factor(c("negative", "low", "negative", "high", "low", "negative", "low", "low"))
 )
+
 ```
 
 
-```{r testing_means}
-mean(random_normal)
-mean(logical_var)
+## Testing means of the variables in the dataframe
+```{r testing_means, warning = FALSE}
+mean(pull(prob1_df, normal_var))
+mean(pull(prob1_df, logical_var))
+mean(pull(prob1_df, charac_var))
+mean(pull(prob1_df, factor_var))
+```
+After taking the means of the variables in the dataframe, the normally distributed and logical variables generated means. Both the character and factor variables returned NA for the mean. 
+
+
+```{r converting_to_numeric, eval = FALSE}
+as.numeric(pull(prob1_df, logical_var))
+as.numeric(pull(prob1_df, charac_var))
+as.numeric(pull(prob1_df, factor_var))
+
+```
+After using the as.numeric function, both the logical and factor variables were converted to numerics. The logical variable had True and False statements statements converted to "1" and "0" respectively. The  factor variable had the Negative, Low, and High levels changed to "3", "2", and "1" respectively. The character variable was not able to be converted into a numeric. There is no rank or binary structure that can be given to the character variable, so it was not able to be converted. This demonstrates why a mean was not possible for charac_var, and why the logical_var did not have a mean originally, but would now. 
+
+```{r}
+
 ```
 
+convert the logical vector to numeric, and multiply the random sample by the result
+convert the logical vector to a factor, and multiply the random sample by the result
+convert the logical vector to a factor and then convert the result to numeric, and multiply the random sample by the result
 # Problem 2
