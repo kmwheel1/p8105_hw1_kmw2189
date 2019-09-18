@@ -40,20 +40,37 @@ mean(pull(prob1_df, factor_var))
 ```
 After taking the means of the variables in the dataframe, the normally distributed and logical variables generated means. Both the character and factor variables returned NA for the mean. 
 
-
+## Using as.numeric
 ```{r converting_to_numeric, eval = FALSE}
 as.numeric(pull(prob1_df, logical_var))
 as.numeric(pull(prob1_df, charac_var))
 as.numeric(pull(prob1_df, factor_var))
 
 ```
-After using the as.numeric function, both the logical and factor variables were converted to numerics. The logical variable had True and False statements statements converted to "1" and "0" respectively. The  factor variable had the Negative, Low, and High levels changed to "3", "2", and "1" respectively. The character variable was not able to be converted into a numeric. There is no rank or binary structure that can be given to the character variable, so it was not able to be converted. This demonstrates why a mean was not possible for charac_var, and why the logical_var did not have a mean originally, but would now. 
+After using the as.numeric function, both the logical and factor variables were converted to numerics. The logical variable had True and False statements statements converted to "1" and "0" respectively. The  factor variable had the Negative, Low, and High levels changed to "3", "2", and "1" respectively. The character variable was not able to be converted into a numeric. There is no rank or binary structure that can be given to the character variable, so it was not able to be converted. This demonstrates why a mean was not possible for charac_var, and why the logical_var did not have a mean originally, but would now.
 
-```{r}
+## Converting vectors and multiplying
+```{r converting_chunk, warning = FALSE}
+##convert the logical vector to numeric, and multiply the random sample by the result
+as.numeric(pull(prob1_df, logical_var))*(pull(prob1_df, normal_var))
+
+##convert the logical vector to a factor, and multiply the random sample by the result
+as.factor(pull(prob1_df, logical_var))*(pull(prob1_df, normal_var)) 
+
+##convert the logical vector to a factor and then convert the result to numeric, and multiply the random sample by the result
+as.numeric(as.factor(pull(prob1_df, logical_var)))*(pull(prob1_df, normal_var))
 
 ```
 
-convert the logical vector to numeric, and multiply the random sample by the result
-convert the logical vector to a factor, and multiply the random sample by the result
-convert the logical vector to a factor and then convert the result to numeric, and multiply the random sample by the result
+Converting a logical vector into a factor does not allow you to multiply it by a numeric, it needs to be converted from logical to factor and then to numeric. 
+
+
 # Problem 2
+## Creating the Data Frame
+
+Create a data frame comprised of:
+x: a random sample of size 500 from a standard Normal distribution
+y: a random sample of size 500 from a standard Normal distribution
+A logical vector indicating whether x + y > 1
+A numeric vector created by coercing the above logical vector
+A factor vector created by coercing the above logical vector
