@@ -38,7 +38,7 @@ mean(pull(prob1_df, logical_var))
 mean(pull(prob1_df, charac_var))
 mean(pull(prob1_df, factor_var))
 ```
-After taking the means of the variables in the dataframe, the normally distributed and logical variables generated means. Both the character and factor variables returned NA for the mean. 
+After taking the means of the variables in the dataframe, the numeric and logical variables generated means. Both the character and factor variables returned NA for the mean. 
 
 ## Using as.numeric
 ```{r converting_to_numeric, eval = FALSE}
@@ -47,7 +47,7 @@ as.numeric(pull(prob1_df, charac_var))
 as.numeric(pull(prob1_df, factor_var))
 
 ```
-After using the as.numeric function, both the logical and factor variables were converted to numerics. The logical variable had True and False statements statements converted to "1" and "0" respectively. The  factor variable had the Negative, Low, and High levels changed to "3", "2", and "1" respectively. The character variable was not able to be converted into a numeric. There is no rank or binary structure that can be given to the character variable, so it was not able to be converted. This demonstrates why a mean was not possible for charac_var, and why the logical_var did not have a mean originally, but would now.
+After using the as.numeric function, both the logical and factor variables were converted to numerics. The logical variable contained True and False statements statements that were converted to "1" and "0" respectively. The  factor variable contained the levels of Negative, Low, and High which were converted to "3", "2", and "1", respectively. The character variable was not converted into a numeric. There is no level or binary structure that can be assigned to the character variable, so it was not converted. This demonstrates why the character variable was not able to generate a mean, and why the logical variable did not have a mean originally, but would could after being converted to a numeric variable.
 
 ## Converting vectors and multiplying
 ```{r converting_chunk, warning = FALSE}
@@ -78,4 +78,21 @@ prob2_df = tibble(
 )
 
 ```
+
+```{r in line code chunk, include = FALSE}
+mean_samp = mean(pull(prob2_df, x))
+median_samp = median(pull(prob2_df, x))
+sd_samp = sd(pull(prob2_df, x))
+
+
+prob_logical = 1 - pnorm(1, mean = 0.02, sd = 1.01)
+percent_log = 100*prob_logical
+```
+
+The dataset above has `r nrow(prob2_df)` rows and `r ncol(prob2_df)` columns. Variable x has a **mean** of `r round(mean_samp, digits = 2)`, a **median** of `r round(median_samp, digits = 2)`, and a **standard deviation** of `r round(sd_samp, digits = 2)`. The proportion of cases in which x + y > 1 is `r round(percent_log, digits = 2)`%.
+
+
+
+Make a scatterplot of y vs x; color points using the logical variable (adding color = ... inside of aes in your ggplot code should help). Make a second and third scatterplot that color points using the numeric and factor variables, respectively, and comment on the color scales.
+
 
