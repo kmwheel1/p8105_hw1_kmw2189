@@ -1,10 +1,7 @@
 ---
 title: "P8105 Homework Assignment 1"
-
 author: "Kylie Wheelock Riley"
-
-date: "9/15/2019"
-
+date: "9/20/2019"
 output: github_document
 ---
 
@@ -32,24 +29,33 @@ prob1_df = tibble(
 
 
 ## Testing means of the variables in the dataframe
+
+Both the numeric and logical variables generated means while the character and factor variables returned NA for the mean.
+
 ```{r testing_means, warning = FALSE}
 mean(pull(prob1_df, normal_var))
 mean(pull(prob1_df, logical_var))
 mean(pull(prob1_df, charac_var))
 mean(pull(prob1_df, factor_var))
 ```
-After taking the means of the variables in the dataframe, the numeric and logical variables generated means. Both the character and factor variables returned NA for the mean. 
+
 
 ## Using as.numeric
+
+After using the as.numeric function, both the logical and factor variables were converted to numerics. The logical variable contained True and False statements statements that were converted to "1" and "0" respectively. The  factor variable contained the levels of Negative, Low, and High which were converted to "3", "2", and "1", respectively. The character variable was not converted into a numeric. There is no level or binary structure that can be assigned to the character variable, so it was not converted. This demonstrates why the character variable was not able to generate a mean, and why the logical variable did not have a mean originally, but would could after being converted to a numeric variable.
+
 ```{r converting_to_numeric, eval = FALSE}
 as.numeric(pull(prob1_df, logical_var))
 as.numeric(pull(prob1_df, charac_var))
 as.numeric(pull(prob1_df, factor_var))
 
 ```
-After using the as.numeric function, both the logical and factor variables were converted to numerics. The logical variable contained True and False statements statements that were converted to "1" and "0" respectively. The  factor variable contained the levels of Negative, Low, and High which were converted to "3", "2", and "1", respectively. The character variable was not converted into a numeric. There is no level or binary structure that can be assigned to the character variable, so it was not converted. This demonstrates why the character variable was not able to generate a mean, and why the logical variable did not have a mean originally, but would could after being converted to a numeric variable.
+
 
 ## Converting vectors and multiplying
+
+Converting a logical vector into a factor does not allow you to multiply it by a numeric, it needs to be converted from logical to factor and then to numeric. 
+
 ```{r converting_chunk, warning = FALSE}
 ##convert the logical vector to numeric, and multiply the random sample by the result
 as.numeric(pull(prob1_df, logical_var))*(pull(prob1_df, normal_var))
@@ -62,12 +68,11 @@ as.numeric(as.factor(pull(prob1_df, logical_var)))*(pull(prob1_df, normal_var))
 
 ```
 
-Converting a logical vector into a factor does not allow you to multiply it by a numeric, it needs to be converted from logical to factor and then to numeric. 
 
 
 # Problem 2
 
-## Creating the dataframe
+## Dataframe
 ```{r}
 prob2_df = tibble(
   x = rnorm(500),
