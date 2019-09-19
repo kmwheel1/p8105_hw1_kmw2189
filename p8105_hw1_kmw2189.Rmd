@@ -91,8 +91,18 @@ percent_log = 100*prob_logical
 
 The dataset above has `r nrow(prob2_df)` rows and `r ncol(prob2_df)` columns. Variable x has a **mean** of `r round(mean_samp, digits = 2)`, a **median** of `r round(median_samp, digits = 2)`, and a **standard deviation** of `r round(sd_samp, digits = 2)`. The proportion of cases in which x + y > 1 is `r round(percent_log, digits = 2)`%.
 
+## Scatterplots
+
+```{r yx_scatter, echo = FALSE}
+ggplot(prob2_df, aes(x = x, y = y, color = logical_var2)) + geom_point()
+
+ggplot(prob2_df, aes(x = x, y = y, color = numeric_var2)) + geom_point()
+
+ggplot(prob2_df, aes(x = x, y = y, color = factor_var2)) + geom_point()
+
+```
 
 
-Make a scatterplot of y vs x; color points using the logical variable (adding color = ... inside of aes in your ggplot code should help). Make a second and third scatterplot that color points using the numeric and factor variables, respectively, and comment on the color scales.
+
 
 
