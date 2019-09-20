@@ -96,6 +96,8 @@ The dataset above has `r nrow(prob2_df)` rows and `r ncol(prob2_df)` columns. Va
 ```{r yx_scatter, echo = FALSE}
 ggplot(prob2_df, aes(x = x, y = y, color = logical_var2)) + geom_point()
 
+ggsave("logicalvarplot.pdf")
+
 ggplot(prob2_df, aes(x = x, y = y, color = numeric_var2)) + geom_point()
 
 ggplot(prob2_df, aes(x = x, y = y, color = factor_var2)) + geom_point()
